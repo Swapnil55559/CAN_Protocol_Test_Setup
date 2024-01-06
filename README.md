@@ -22,7 +22,6 @@ Any High speed CAN Tranceiver can be used, in this case TJA1050 CAN Tranceiver i
 * Connect the CAN Rx (PA11 or D10) and CAN Tx (PA12 or D2) to the Rx Pin and Tx pin of the Tranceiver respectively in both the STM32F303K8
 * Provide 3.3V VCC and GND to Tranceiver from the STM32F303K8
 * Connect CAN H and CAN L of one Tranceiver to CAN H and CAN L of another Tranceiver in a twisted pair of wire
-* External Switch and push button can be attached to the pin 5 & 6 for direction control and to apply brake respectively.
 
 ## Instructions
 
