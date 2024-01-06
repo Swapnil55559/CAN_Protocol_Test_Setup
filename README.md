@@ -25,10 +25,25 @@ Any High speed CAN Tranceiver can be used, in this case TJA1050 CAN Tranceiver i
 
 ## Instructions
 
+The the setting for bit timing is calculated from the online [bit time calculator](http://www.bittiming.can-wiki.info/), the clock for CAN periphereal (ABP1 peripheral clock) is at 32 MHz in this case and HCLK is at 64 MHz shall be same in all the Nodes connected to CAN bus, as they all must be operating in same baudrate, the confguration for bit timing shall be as follows:
+```C
+  hcan.Instance = CAN;
+  hcan.Init.Prescaler = 4;
+  hcan.Init.Mode = CAN_MODE_NORMAL;
+  hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_13TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_2TQ;
+  hcan.Init.TimeTriggeredMode = DISABLE;
+  hcan.Init.AutoBusOff = DISABLE;
+  hcan.Init.AutoWakeUp = DISABLE;
+  hcan.Init.AutoRetransmission = DISABLE;
+  hcan.Init.ReceiveFifoLocked = DISABLE;
+  hcan.Init.TransmitFifoPriority = DISABLE;
+```
 In order to operate on 100KBps, 250KBps or 500KBps, Just configure `hcan.Init.Prescaler` to 20, 8 or 4 respectively. Configuration can be done inside the CubeMX, navigate to: **connectivity -> CAN -> Parameter Settings -> Prescaler (for Time Quantum)** or It can also be configured from `main.c` file inside the **Src** file
 
 For Filter Configuration, configure the following according to the ID needed to be filtered
-```C++
+```C
   /* USER CODE BEGIN CAN_Init 2 */
   CAN_FilterTypeDef canfilterconfig;
 
